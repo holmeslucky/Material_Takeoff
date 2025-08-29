@@ -1,0 +1,43 @@
+services:
+  # Web Service - FastAPI Backend + React Frontend
+  - type: web
+    name: capitol-takeoff
+    env: python
+    region: oregon
+    buildCommand: |
+      cd frontend && npm install && npm run build &&
+      cd ../backend && pip install -r requirements.txt &&
+      mkdir -p static && cp -r ../frontend/dist/* static/
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: COMPANY_NAME
+        value: Indolent Designs
+      - key: COMPANY_ADDRESS  
+        value: "742 Evergreen Terrace, Springfield"
+      - key: COMPANY_PHONE
+        value: "951-732-1514"
+      - key: COMPANY_MOBILE
+        value: "951-732-1514"
+      - key: COMPANY_CONTACT
+        value: "Blake Holmes"
+      - key: COMPANY_EMAIL
+        value: "indolentforge@gmail.com"
+      - key: COMPANY_WEBSITE
+        value: "https://indolent.neocities.org/"
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false  # Set this manually in Render dashboard
+      - key: OPENAI_MODEL
+        value: "gpt-4o-mini"
+
+  # PostgreSQL Database
+  - type: pgsql
+    name: capitol-takeoff-db
+    databaseName: capitol_takeoff
+    user: capitol_user
+    region: oregon

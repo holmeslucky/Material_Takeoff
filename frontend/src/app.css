@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AG Grid Dark Theme Override */
+.ag-theme-alpine-dark {
+  --ag-foreground-color: rgb(229 231 235);
+  --ag-background-color: rgb(31 41 55);
+  --ag-header-foreground-color: rgb(243 244 246);
+  --ag-header-background-color: rgb(17 24 39);
+  --ag-odd-row-background-color: rgb(31 41 55);
+  --ag-row-hover-color: rgb(55 65 81);
+  --ag-selected-row-background-color: rgb(59 130 246);
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(31 41 55);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(75 85 99);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(107 114 128);
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgb(59 130 246);
+  outline-offset: 2px;
+}
+
+/* Custom component styles */
+.quick-entry-panel {
+  @apply bg-gray-800 border border-gray-700 rounded-lg p-4;
+}
+
+.calculations-panel {
+  @apply bg-gray-800 border border-gray-700 rounded-lg p-4;
+}
+
+.takeoff-grid {
+  @apply bg-gray-800 border border-gray-700 rounded-lg overflow-hidden;
+}
+
+/* Animation utilities */
+.fade-in {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

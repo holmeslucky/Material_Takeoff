@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "name": "capitol-takeoff",
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "backend/app/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/app/main.py"
+    },
+    {
+      "src": "/health",
+      "dest": "backend/app/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/dist/$1"
+    }
+  ],
+  "env": {
+    "ENVIRONMENT": "production",
+    "COMPANY_NAME": "Indolent Designs",
+    "COMPANY_ADDRESS": "742 Evergreen Terrace, Springfield",
+    "COMPANY_PHONE": "951-732-1514",
+    "COMPANY_MOBILE": "951-732-1514",
+    "COMPANY_CONTACT": "Blake Holmes",
+    "COMPANY_EMAIL": "indolentforge@gmail.com",
+    "COMPANY_WEBSITE": "https://indolent.neocities.org/",
+    "CORS_ORIGINS": "*"
+  },
+  "functions": {
+    "backend/app/main.py": {
+      "runtime": "python3.9"
+    }
+  }
+}

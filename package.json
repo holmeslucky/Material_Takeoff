@@ -1,0 +1,14 @@
+{
+  "name": "indolent-forge",
+  "version": "1.0.0",
+  "description": "Indolent Forge - Professional Steel Estimating System",
+  "scripts": {
+    "install": "cd frontend && npm install && cd ../backend && pip install -r requirements.txt",
+    "build": "cd frontend && npm run build && mkdir -p ../backend/static && cp -r dist/* ../backend/static/",
+    "start": "cd backend && python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+  },
+  "engines": {
+    "node": "18.x",
+    "python": "3.11.x"
+  }
+}

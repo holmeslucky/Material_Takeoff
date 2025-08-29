@@ -1,0 +1,28 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT",
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 300,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 3
+  },
+  "environments": {
+    "production": {
+      "variables": {
+        "ENVIRONMENT": "production",
+        "COMPANY_NAME": "Capitol Engineering Company",
+        "COMPANY_ADDRESS": "724 E Southern Pacific Dr, Phoenix AZ 85034",
+        "COMPANY_PHONE": "602-281-6517",
+        "COMPANY_MOBILE": "951-732-1514",
+        "COMPANY_WEBSITE": "www.capitolaz.com",
+        "OPENAI_MODEL": "gpt-4o-mini",
+        "CORS_ORIGINS": "*",
+        "LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}
